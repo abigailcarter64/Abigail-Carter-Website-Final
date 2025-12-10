@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="A calming wellness word game." />
+        <meta name="author" content="Abigail Carter" />
+        <title>Wellness Word Game - Abigail's Guide</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- Custom styles just for the game -->
+        <style>
+            .app-card {
+                background: #ffffff;
+                padding: 3rem;
+                border-radius: 18px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                text-align: center;
+                margin-top: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .app-card p {
+                margin-bottom: 1rem;
+            }
+
+            .word-grid {
+                margin: 1.5rem auto 1rem auto;
+                max-width: 340px;
+            }
+
+            .word-row {
+                display: flex;
+                justify-content: center;
+                gap: 0.4rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .letter-box {
+                width: 45px;
+                height: 45px;
+                border-radius: 8px;
+                border: 2px solid #d5c8b1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 1.2rem;
+                font-family: "Open Sans", sans-serif;
+                background-color: #f8f3ea;
+                color: #4d3b2f;
+            }
+
+            .letter-correct {
+                background-color: #7fbf8f;
+                border-color: #7fbf8f;
+                color: #ffffff;
+            }
+
+            .letter-present {
+                background-color: #d3b46f;
+                border-color: #d3b46f;
+                color: #ffffff;
+            }
+
+            .letter-absent {
+                background-color: #d8d5cf;
+                border-color: #d8d5cf;
+                color: #6b6863;
+            }
+
+            .controls {
+                margin-top: 1rem;
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .controls input[type="text"] {
+                max-width: 160px;
+                text-transform: uppercase;
+                text-align: center;
+                border-radius: 8px;
+                border: 1px solid #d5c8b1;
+                padding: 0.45rem 0.75rem;
+                font-size: 1rem;
+            }
+
+            .app-button {
+                background-color: #d5c8b1;
+                color: #4d3b2f;
+                border: none;
+                padding: 0.55rem 1.6rem;
+                border-radius: 8px;
+                font-size: 0.98rem;
+                font-weight: 600;
+                transition: background-color 0.25s ease, transform 0.1s ease;
+            }
+
+            .app-button:hover {
+                background-color: #cbbba0;
+                transform: translateY(-1px);
+                cursor: pointer;
+            }
+
+            .status-message {
+                margin-top: 1rem;
+                min-height: 1.5rem;
+                font-size: 0.98rem;
+                color: #6b6863;
+            }
+
+            .status-message.positive {
+                color: #3c7d4e;
+            }
+
+            .status-message.negative {
+                color: #9c4b4b;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Abigail’s Guide</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="scratch.html">Scratch</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 active" href="app.html">My Wellness App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg2.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Wellness Word Game</h1>
+                            <h2 class="subheading">Guess the calming 5-letter word</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+                        <div class="app-card">
+                            <p>
+                                You have <strong>6 attempts</strong> to guess a 5-letter wellness word.<br>
+                                Green = right letter & right spot. Gold = right letter, wrong spot.
+                            </p>
+
+                            <!-- Grid where guesses appear -->
+                            <div class="word-grid" id="wordGrid"></div>
+
+                            <!-- Controls -->
+                            <div class="controls">
+                                <input
+                                    type="text"
+                                    id="guessInput"
+                                    maxlength="5"
+                                    placeholder="enter word"
+                                    autocomplete="off">
+                                <button class="app-button" id="guessBtn">Guess</button>
+                                <button class="app-button" id="resetBtn" type="button">New Game</button>
+                            </div>
+
+                            <div id="status" class="status-message"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7 text-center">
+                        <div class="small text-muted fst-italic py-4">
+                            © Abigail Carter 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <!-- Wellness Word Game logic -->
+        <script>
+            const WORDS = [
+                "GLOWY",
+                "PEACE",
+                "CREAM",
+                "STEAM",
+                "CALM",
+                "SMILE",
+                "RELAX",
+                "SERUM",
+                "SKINN", // fake 5-letter version for game purposes :)
+                "RESTS"
+            ];
+
+            const maxAttempts = 6;
+            let secretWord = "";
+            let attempts = 0;
+            let isGameOver = false;
+
+            const grid = document.getElementById("wordGrid");
+            const input = document.getElementById("guessInput");
+            const guessBtn = document.getElementById("guessBtn");
+            const resetBtn = document.getElementById("resetBtn");
+            const statusEl = document.getElementById("status");
+
+            function pickSecretWord() {
+                const randomIndex = Math.floor(Math.random() * WORDS.length);
+                secretWord = WORDS[randomIndex];
+            }
+
+            function createEmptyGrid() {
+                grid.innerHTML = "";
+                for (let i = 0; i < maxAttempts; i++) {
+                    const row = document.createElement("div");
+                    row.className = "word-row";
+                    for (let j = 0; j < 5; j++) {
+                        const box = document.createElement("div");
+                        box.className = "letter-box";
+                        box.textContent = "";
+                        row.appendChild(box);
+                    }
+                    grid.appendChild(row);
+                }
+            }
+
+            function setStatus(message, type = "") {
+                statusEl.textContent = message;
+                statusEl.classList.remove("positive", "negative");
+                if (type === "positive") statusEl.classList.add("positive");
+                if (type === "negative") statusEl.classList.add("negative");
+            }
+
+            function handleGuess() {
+                if (isGameOver) return;
+
+                let guess = input.value.trim().toUpperCase();
+                if (guess.length !== 5) {
+                    setStatus("Please enter a 5-letter word.", "negative");
+                    return;
+                }
+
+                attempts++;
+
+                // Fill row
+                const row = grid.children[attempts - 1];
+                const boxes = row.querySelectorAll(".letter-box");
+
+                // Count letters in secret for "present" tracking
+                const secretArray = secretWord.split("");
+                const guessArray = guess.split("");
+                const letterCount = {};
+
+                secretArray.forEach(letter => {
+                    letterCount[letter] = (letterCount[letter] || 0) + 1;
+                });
+
+                // First pass: correct positions
+                const result = Array(5).fill("absent");
+                for (let i = 0; i < 5; i++) {
+                    boxes[i].textContent = guessArray[i];
+                    if (guessArray[i] === secretArray[i]) {
+                        result[i] = "correct";
+                        letterCount[guessArray[i]]--;
+                    }
+                }
+
+                // Second pass: present but wrong position
+                for (let i = 0; i < 5; i++) {
+                    if (result[i] === "correct") continue;
+                    const letter = guessArray[i];
+                    if (letterCount[letter] > 0) {
+                        result[i] = "present";
+                        letterCount[letter]--;
+                    }
+                }
+
+                // Apply classes
+                for (let i = 0; i < 5; i++) {
+                    boxes[i].classList.remove("letter-correct", "letter-present", "letter-absent");
+                    if (result[i] === "correct") {
+                        boxes[i].classList.add("letter-correct");
+                    } else if (result[i] === "present") {
+                        boxes[i].classList.add("letter-present");
+                    } else {
+                        boxes[i].classList.add("letter-absent");
+                    }
+                }
+
+                if (guess === secretWord) {
+                    setStatus("✨ You got it! So calm. So iconic. ✨", "positive");
+                    isGameOver = true;
+                    return;
+                }
+
+                if (attempts >= maxAttempts) {
+                    setStatus("Out of guesses! The word was: " + secretWord, "negative");
+                    isGameOver = true;
+                    return;
+                }
+
+                setStatus("Try again — breathe, then guess another word.");
+                input.value = "";
+                input.focus();
+            }
+
+            function resetGame() {
+                attempts = 0;
+                isGameOver = false;
+                pickSecretWord();
+                createEmptyGrid();
+                setStatus("New game started. You’ve got this.");
+                input.value = "";
+                input.focus();
+            }
+
+            // Event listeners
+            guessBtn.addEventListener("click", handleGuess);
+            resetBtn.addEventListener("click", resetGame);
+            input.addEventListener("keyup", function (event) {
+                if (event.key === "Enter") {
+                    handleGuess();
+                }
+            });
+
+            // Initialize on load
+            resetGame();
+        </script>
+    </body>
+</html>

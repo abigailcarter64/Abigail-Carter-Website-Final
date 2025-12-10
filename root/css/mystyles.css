@@ -1,0 +1,80 @@
+/* Custom background */
+body {
+    background-color: #f7f2ec;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    color: #4b3f35;
+}
+
+/* Navigation */
+nav {
+    background-color: #e8d9c5;
+    padding: 10px;
+}
+nav a {
+    color: #4b3f35;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Hero section */
+#hero {
+    background-image: url('../assets/img/about-bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 80px;
+    text-align: center;
+    color: white;
+}
+
+/* Section headers */
+h2 {
+    margin-top: 40px;
+    color: #5a473d;
+}
+
+/* Image box */
+.image-box {
+    padding: 20px;
+    text-align: center;
+}
+.image-box img {
+    width: 60%;
+    border-radius: 12px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Three div layout requirement (this counts as 1 example) */
+#routine, #video, #tableau {
+    background-color: white;
+    margin: 30px auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+}
+/* Global link styles */
+a {
+    color: #5a473d;          /* warm brown aesthetic */
+    text-decoration: none;   /* remove underline */
+    font-weight: bold;
+}
+
+a:hover {
+    color: #8b6f5c;          /* soft lighter brown */
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #5a473d;          /* keep same color after clicking */
+}
+
+/* Global background override — match the Guide page */
+body {
+    background-color: #f3ede4 !important;  /* beige you’re using */
+}
+
+/* Make post/article boxes still white where appropriate */
+article, .app-card, .post-preview, .post-content, .container {
+    background-color: transparent;
+}
+
